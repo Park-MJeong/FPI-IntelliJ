@@ -15,6 +15,9 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+//수동으로 스프링컨테이너에 빈 등록 @configuration 안에 @bean 사용
+//@configuration 안의 @component가 클래스를 자동으로 찾아서 빈을 등록해줌 ==>싱글톤(항상 동일한 객체 반환) 보장
+
 @Configuration
 @EnableWebSecurity //웹 보안 활성화 ,spring security
 @RequiredArgsConstructor
@@ -30,8 +33,7 @@ public class SecurityConfig {
         // 전체 요청에 접근할 수 있도록 하는 코드
 //        return http.authorizeHttpRequests(auth -> auth.anyRequest().permitAll()).build();
         return http
-//                csrf 프로젝트시 비활성화 해주기
-//                cross site request forgery : csrf 비활성화
+//                csrf 비활성화 : post요청시 403에러,
                 .csrf(AbstractHttpConfigurer::disable)
                 //요청에 대한 인증 및 인가를 설정.
                 .authorizeHttpRequests(auth -> auth
@@ -61,6 +63,8 @@ public class SecurityConfig {
                 .build();
 
     }
+
+//    스프링시큐리티가 인증성공시 successhandler호출
     @Bean
     public AuthenticationSuccessHandler authenticationSuccessHandler() {
         return (request, response, auth) -> {

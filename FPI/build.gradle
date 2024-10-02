@@ -23,6 +23,8 @@ repositories {
     mavenCentral()
 }
 
+//라이브러리 관리, maven repository에서 자동 다운로드
+//라이브러리 의존성관리,라이브러리 충돌자동관리
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
     implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -37,7 +39,7 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-    // lombok
+    // lombok : 어노테이션을 통해 자동으로 코드생성
     implementation 'org.projectlombok:lombok'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

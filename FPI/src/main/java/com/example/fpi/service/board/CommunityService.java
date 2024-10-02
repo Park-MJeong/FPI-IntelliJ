@@ -32,7 +32,7 @@ public interface CommunityService {
     void selectLike(String userId,Long communityId); //게시판 좋아요기능
     Long selectMyLike(String userId,Long communityId); //좋아요한 게시판인지
 
-    int countViews(Long communityId,CustomOAuth2User user, HttpSession session);
+//    int countViews(Long communityId,CustomOAuth2User user, HttpSession session);
 
 
 }

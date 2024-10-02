@@ -35,14 +35,14 @@ public class CommunityRestController {
         System.out.println(size+"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
         return ResponseEntity.ok(communityService.getCommunityList(page, size, search, subject,sort,customOAuth2User));
     }
-
-    //    디테일에서 조회수 바로 반영하기 위해서
-    @GetMapping("/countViews/{communityId}")
-    public ResponseEntity<?> getCountViews(@PathVariable Long communityId, @AuthenticationPrincipal CustomOAuth2User customOAuth2User, HttpSession session) {
-
-
-        int countViews = communityService.countViews(communityId,customOAuth2User,session);
-        return ResponseEntity.ok().body(Collections.singletonMap("countViews", countViews));
-    }
+//
+//    //    디테일에서 조회수 바로 반영하기 위해서
+//    @GetMapping("/countViews/{communityId}")
+//    public ResponseEntity<?> getCountViews(@PathVariable Long communityId, @AuthenticationPrincipal CustomOAuth2User customOAuth2User, HttpSession session) {
+//
+//
+//        int countViews = communityService.countViews(communityId,customOAuth2User,session);
+//        return ResponseEntity.ok().body(Collections.singletonMap("countViews", countViews));
+//    }
 
 }

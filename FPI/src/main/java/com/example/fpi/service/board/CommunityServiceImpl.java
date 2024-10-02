@@ -65,6 +65,18 @@ public class CommunityServiceImpl implements CommunityService {
         else {
             community.setLoginUserId(user.getUserId());
         }
+        if(session.getAttribute("loginName") == null){
+            community.setLoginName((String) session.getAttribute("proName"));
+        }
+        else if(session.getAttribute("proName") == null){
+            community.setLoginName((String) session.getAttribute("loginName"));
+        }
+        //        로그인을 안했거나
+        if (user ==null || !community.getAuthor().equals(community.getLoginName())) {
+//            조회수가 플러스 1이되는 update쿼리문
+            communityMapper.plusViews(communityId);
+            System.out.println(community);
+        }
         community.setLikeUse(selectMyLike(community.getLoginUserId(),communityId));
         return community;
     }
@@ -150,12 +162,13 @@ public class CommunityServiceImpl implements CommunityService {
             likeDTO.setUserId(userId);
             likeDTO.setCommunityId(communityId);
             communityMapper.insertLike(LikeVO.toEntity(likeDTO));
-            communityMapper.minusViews(communityId); //페이지 재 실행되면서 카운트 올라가서 코드 추가함
+//            communityMapper.minusViews(communityId); //페이지 재 실행되면서 카운트 올라가서 코드 추가함
         }
         else {
             communityMapper.deleteLike(likeId);
-            communityMapper.minusViews(communityId);//페이지 재 실행되면서 카운트 올라가서 코드 추가함
+//            communityMapper.minusViews(communityId);//페이지 재 실행되면서 카운트 올라가서 코드 추가함
         }
+        communityMapper.minusViews(communityId);
         System.out.println(likeDTO);
 
     }
@@ -165,24 +178,24 @@ public class CommunityServiceImpl implements CommunityService {
         return communityMapper.selectLike(userId,communityId);
     }
 
-    @Override
-    public int countViews(Long communityId,CustomOAuth2User user, HttpSession session) {
-        CommunityDetailDTO community= communityMapper.selectCommunityDetail(communityId);
-//        로그인되어있는 사람의 이름을 가져옴(헤더이름)
-        if(session.getAttribute("loginName") == null){
-            community.setLoginName((String) session.getAttribute("proName"));
-        }
-        else if(session.getAttribute("proName") == null){
-            community.setLoginName((String) session.getAttribute("loginName"));
-        }
-        //        로그인을 안했거나
-        if (user ==null || !community.getAuthor().equals(community.getLoginName())) {
-//            조회수가 플러스 1이되는 update쿼리문
-            communityMapper.plusViews(communityId);
-            System.out.println(community);
-        }
-        return communityMapper.countViews(communityId);
-    }
+//    @Override
+//    public int countViews(Long communityId,CustomOAuth2User user, HttpSession session) {
+//        CommunityDetailDTO community= communityMapper.selectCommunityDetail(communityId);
+////        로그인되어있는 사람의 이름을 가져옴(헤더이름)
+//        if(session.getAttribute("loginName") == null){
+//            community.setLoginName((String) session.getAttribute("proName"));
+//        }
+//        else if(session.getAttribute("proName") == null){
+//            community.setLoginName((String) session.getAttribute("loginName"));
+//        }
+//        //        로그인을 안했거나
+//        if (user ==null || !community.getAuthor().equals(community.getLoginName())) {
+////            조회수가 플러스 1이되는 update쿼리문
+//            communityMapper.plusViews(communityId);
+//            System.out.println(community);
+//        }
+//        return communityMapper.countViews(communityId);
+//    }
 
 
 }

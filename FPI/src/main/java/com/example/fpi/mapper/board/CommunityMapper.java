@@ -33,6 +33,6 @@ public interface CommunityMapper {
     void plusViews(Long communityId);
     void minusViews(Long communityId);
 
-    int countViews(Long communityId);
+//    int countViews(Long communityId);
 
 }

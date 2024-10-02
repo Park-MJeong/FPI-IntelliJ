@@ -170,12 +170,12 @@
         where COMMUNITY_ID = #{communityId}
     </update>
 
-<!--    디테일에서 바로 반영위해-->
-    <select id="countViews">
-        select VIEWS
-        from TBL_COMMUNITY
-        where COMMUNITY_ID =#{communityId}
-    </select>
+<!--&lt;!&ndash;    디테일에서 바로 반영위해&ndash;&gt;-->
+<!--    <select id="countViews">-->
+<!--        select VIEWS-->
+<!--        from TBL_COMMUNITY-->
+<!--        where COMMUNITY_ID =#{communityId}-->
+<!--    </select>-->
 
 
 </mapper>

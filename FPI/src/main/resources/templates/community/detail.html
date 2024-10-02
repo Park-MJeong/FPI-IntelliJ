@@ -40,7 +40,7 @@
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 5C7.03 5 3.24 9.07 2.11 12C3.24 14.93 7.03 19 12 19C16.97 19 20.76 14.93 21.89 12C20.76 9.07 16.97 5 12 5ZM12 17C9.79 17 8 15.21 8 13C8 10.79 9.79 9 12 9C14.21 9 16 10.79 16 13C16 15.21 14.21 17 12 17ZM12 10C10.34 10 9 11.34 9 13C9 14.66 10.34 16 12 16C13.66 16 15 14.66 15 13C15 11.34 13.66 10 12 10Z" stroke="black" stroke-width="0.5" fill="none"/>
                     </svg>
-                    <div th:text="'조회수 '+ *{views+1}"></div>
+                    <div th:text="'조회수 '+ *{views}"></div>
                 </div>
 
                 <div  class="like-icon">
@@ -67,7 +67,7 @@
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 5C7.03 5 3.24 9.07 2.11 12C3.24 14.93 7.03 19 12 19C16.97 19 20.76 14.93 21.89 12C20.76 9.07 16.97 5 12 5ZM12 17C9.79 17 8 15.21 8 13C8 10.79 9.79 9 12 9C14.21 9 16 10.79 16 13C16 15.21 14.21 17 12 17ZM12 10C10.34 10 9 11.34 9 13C9 14.66 10.34 16 12 16C13.66 16 15 14.66 15 13C15 11.34 13.66 10 12 10Z" stroke="black" stroke-width="0.5" fill="none"/>
                     </svg>
-                    <div id="countViews"></div>
+                    <div th:text="'조회수 '+ *{views}"></div>
                 </div>
 
                 <div id ="like" class="like-icon">
